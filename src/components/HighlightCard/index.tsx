@@ -1,19 +1,38 @@
 import React from "react";
 
-import { Container, Header, Title, Icon, Footer, Amount, LastTransaction } from "./styles";
+import { Container, Header, Title, Icon, Footer, Amount, LastTransaction, TypeProps } from "./styles";
 import theme from "../../global/styles/theme";
 
-export function HighlightCard() {
+interface Props {
+  title: string;
+  amount: string;
+  lastTransaction: string;
+  type: "up" | "down" | "total";
+}
+
+const mapIcons = {
+  up: "arrow-up-circle",
+  down: "arrow-down-circle",
+  total: "dollar-sign",
+};
+
+export function HighlightCard({ title, amount, lastTransaction, type }: Props) {
   return (
-    <Container theme={theme}>
+    <Container type={type} theme={theme}>
       <Header>
-        <Title theme={theme}>Entrada</Title>
-        <Icon theme={theme} name="arrow-up-circle" />
+        <Title type={type} theme={theme}>
+          {title}
+        </Title>
+        <Icon theme={theme} name={mapIcons[type as unknown as keyof typeof mapIcons]} type={type} />
       </Header>
 
       <Footer>
-        <Amount theme={theme}>R$ 17.400,00</Amount>
-        <LastTransaction theme={theme}>Última entrada a 15 dias atrás</LastTransaction>
+        <Amount type={type} theme={theme}>
+          {amount}
+        </Amount>
+        <LastTransaction type={type} theme={theme}>
+          {lastTransaction}
+        </LastTransaction>
       </Footer>
     </Container>
   );
