@@ -1,22 +1,29 @@
 import React from "react";
-import { Container, Header, Icon, Photo, User, UserGreeting, UserInfo, UserName, UserWrapper } from "./styles";
+import { Container, Header, HighlightCards, Icon, Photo, User, UserGreeting, UserInfo, UserName, UserWrapper } from "./styles";
+import theme from "../../global/styles/theme";
+import { HighlightCard } from "../../components/HighlightCard";
 
 const Dashboard = () => {
   return (
-    <Container>
-      <Header>
+    <Container theme={theme}>
+      <Header theme={theme}>
         <UserWrapper>
           <UserInfo>
-            <Photo source={{ uri: "https://avatars.githubusercontent.com/u/40742874" }} />
+            <Photo theme={theme} source={{ uri: "https://avatars.githubusercontent.com/u/40742874" }} />
             <User>
-              <UserGreeting>Olá, </UserGreeting>
-              <UserName>Rodrigo</UserName>
+              <UserGreeting theme={theme}>Olá, </UserGreeting>
+              <UserName theme={theme}>Wagner</UserName>
             </User>
           </UserInfo>
+          <Icon name="power" theme={theme} />
         </UserWrapper>
-
-        <Icon name="power" />
       </Header>
+
+      <HighlightCards>
+        <HighlightCard />
+        <HighlightCard />
+        <HighlightCard />
+      </HighlightCards>
     </Container>
   );
 };
