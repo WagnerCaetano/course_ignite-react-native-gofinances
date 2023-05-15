@@ -12,12 +12,33 @@ import {
   UserWrapper,
   Transactions,
   Title,
+  TransactionList,
 } from "./styles";
 import theme from "../../global/styles/theme";
 import { HighlightCard } from "../../components/HighlightCard";
-import { TransactionCard } from "../../components/TransactionCard";
+import { TransactionCard, TransactionCardProps } from "../../components/TransactionCard";
 
 const Dashboard = () => {
+  const dataCards: TransactionCardProps["data"][] = [
+    {
+      title: "Desenvolvimento de site",
+      amount: "R$ 12.000,00",
+      category: { key: "1", name: "Vendas", icon: "dollar-sign" },
+      date: "13/04/2020",
+    },
+    {
+      title: "Desenvolvimento de site",
+      amount: "R$ 12.000,00",
+      category: { key: "1", name: "Vendas", icon: "dollar-sign" },
+      date: "13/04/2020",
+    },
+    {
+      title: "Desenvolvimento de site",
+      amount: "R$ 12.000,00",
+      category: { key: "1", name: "Vendas", icon: "dollar-sign" },
+      date: "13/04/2020",
+    },
+  ];
   return (
     <Container theme={theme}>
       <Header theme={theme}>
@@ -52,7 +73,11 @@ const Dashboard = () => {
       <Transactions>
         <Title theme={theme}>Listagem</Title>
 
-        <TransactionCard />
+        <TransactionList
+          data={dataCards}
+          renderItem={({ item }) => <TransactionCard data={item} />}
+          keyExtractor={(item) => item.title}
+        />
       </Transactions>
     </Container>
   );
